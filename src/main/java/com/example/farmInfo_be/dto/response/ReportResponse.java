@@ -1,5 +1,6 @@
 package com.example.farmInfo_be.dto.response;
 
+import com.example.farmInfo_be.ReportStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
@@ -9,40 +10,44 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class ReportResponse {
+    private Long reportId;
     private String productName;
     private Long area;
     private String ri;
     private String region;
     private Long detailedArea;
     private String reportType;
-    private boolean approved;
+    private ReportStatus status;
     private LocalDateTime createTime;
     private MemberResponse member;
 
     @Builder
     public ReportResponse(String productName, Long area, String ri, String region,
-                          Long detailedArea, String reportType, boolean approved,
-                          LocalDateTime createTime, MemberResponse member) {
+                          Long detailedArea, String reportType, ReportStatus status,
+                          LocalDateTime createTime, MemberResponse member,
+                          Long reportId) {
         this.productName = productName;
         this.area = area;
         this.ri = ri;
         this.region = region;
         this.detailedArea = detailedArea;
         this.reportType = reportType;
-        this.approved = approved;
+        this.status = status;
         this.createTime = createTime;
         this.member = member;
+        this.reportId = reportId;
     }
 
     public static ReportResponse from(Report report) {
         return ReportResponse.builder()
+                .reportId(report.getReportId())
                 .productName(report.getProductName())
                 .area(report.getArea())
                 .ri(report.getRi())
                 .region(report.getCategory())
                 .detailedArea(report.getDetailedArea())
                 .reportType(report.getReportType())
-                .approved(report.isApproved())
+                .status(report.getStatus())
                 .createTime(report.getCreateTime())
                 .member(MemberResponse.from(report.getMember()))
                 .build();

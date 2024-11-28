@@ -1,11 +1,7 @@
 package com.example.farmInfo_be.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import com.example.farmInfo_be.ReportStatus;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +27,8 @@ public class Report {
     private String category;              // 지역
     private Long detailedArea;        // 실경적 면적
     private String reportType;          // 저장 여부 (저장/매수)
-    private boolean approved;
+    @Enumerated(EnumType.STRING)
+    private ReportStatus status;
     private String region;
 
     @CreatedDate
@@ -48,11 +45,15 @@ public class Report {
         this.category = category;
         this.detailedArea = detailedArea;
         this.reportType = reportType;
-        this.approved = false;
+        this.status = ReportStatus.PENDING;
         this.region = region;
     }
 
     public void approve() {
-        this.approved = true;
+        this.status = ReportStatus.APPROVED;
+    }
+
+    public void reject() {
+        this.status = ReportStatus.REJECTED;
     }
 }
