@@ -20,7 +20,6 @@ public class ReportService {
     private final MemberRepository memberRepository;
 
     public ReportResponse createReport(MemberRequest memberRequest, ReportRequest reportRequest) {
-        // 전화번호로 기존 회원 확인
         Member member = memberRepository
                 .findByPhone(memberRequest.getPhone())
                 .orElseGet(() -> createMember(memberRequest));
@@ -30,8 +29,9 @@ public class ReportService {
                 .productName(reportRequest.getProductName())
                 .area(reportRequest.getArea())
                 .ri(reportRequest.getRi())
-                .region(reportRequest.getRegion())
+                .category(reportRequest.getCategory())
                 .detailedArea(reportRequest.getDetailedArea())
+                .region(reportRequest.getRegion())
                 .reportType(reportRequest.getReportType())
                 .build();
 

@@ -10,18 +10,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReportResponse {
     private String productName;
-    private String area;
+    private Long area;
     private String ri;
     private String region;
-    private String detailedArea;
+    private Long detailedArea;
     private String reportType;
     private boolean approved;
     private LocalDateTime createTime;
     private MemberResponse member;
 
     @Builder
-    public ReportResponse(String productName, String area, String ri, String region,
-                          String detailedArea, String reportType, boolean approved,
+    public ReportResponse(String productName, Long area, String ri, String region,
+                          Long detailedArea, String reportType, boolean approved,
                           LocalDateTime createTime, MemberResponse member) {
         this.productName = productName;
         this.area = area;
@@ -39,7 +39,7 @@ public class ReportResponse {
                 .productName(report.getProductName())
                 .area(report.getArea())
                 .ri(report.getRi())
-                .region(report.getRegion())
+                .region(report.getCategory())
                 .detailedArea(report.getDetailedArea())
                 .reportType(report.getReportType())
                 .approved(report.isApproved())
