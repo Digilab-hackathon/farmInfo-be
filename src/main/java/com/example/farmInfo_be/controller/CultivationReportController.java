@@ -60,6 +60,12 @@ public class CultivationReportController {
         return ResponseEntity.ok(reportService.getByStatus(Status.valueOf(status)));
     }
 
+    @Operation(summary = "작물별 재배면적 승인된 면적", description = "특정 작물의 재배면적 신고 중 승인된 신고들의 면적 총합")
+    @GetMapping("/area/{cropName}")
+    public ResponseEntity<Double> getApprovedAreaByCrop(@PathVariable String cropName){
+        return ResponseEntity.ok(reportService.getApprovedAreaByCrop(Crop.valueOf(cropName)));
+    }
+
     @Operation(summary = "재배면적 신고 승인", description = "재배면적 신고를 승인합니다. (관리자 전용)")
     @PatchMapping("/{id}/approve")
     public ResponseEntity<Void> approve(

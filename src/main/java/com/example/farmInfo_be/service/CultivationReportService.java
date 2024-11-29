@@ -59,6 +59,13 @@ public class CultivationReportService {
                 .collect(Collectors.toList());
     }
 
+    public double getApprovedAreaByCrop(Crop crop) {
+        return reportRepository.findByCrop(crop)
+                .stream()
+                .mapToDouble(dto -> dto.getTotalArea())
+                .sum();
+    }
+
     public List<CultivationResponseDto> getByCrop(Crop crop) {
         return reportRepository.findByCrop(crop).stream()
                 .map(CultivationResponseDto::from)
