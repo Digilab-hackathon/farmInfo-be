@@ -21,7 +21,15 @@ public class CultivationAreaController {
     public ResponseEntity<Void> updateOptimalCultivationArea(
            @RequestBody OptimalCultivationAreaRequest optimalCultivationAreaRequest
     ) {
-        cultivationAreaService.changeCultivationArea(Crop.valueOf(optimalCultivationAreaRequest.getCrop()), optimalCultivationAreaRequest.getValue());
+        cultivationAreaService.changeCultivationArea(optimalCultivationAreaRequest.getCrop(), optimalCultivationAreaRequest.getValue());
         return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "적정 재배 면적 조회", description = "적정 재배 면적 조회")
+    @GetMapping("/{crop}")
+    public ResponseEntity<Integer> geteOptimalCultivationArea(
+            @RequestParam String crop
+    ) {
+        return ResponseEntity.ok(cultivationAreaService.get(Crop.valueOf(crop)));
     }
 }
