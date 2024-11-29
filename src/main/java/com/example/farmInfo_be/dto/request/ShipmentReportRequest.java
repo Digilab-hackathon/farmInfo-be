@@ -1,13 +1,17 @@
 package com.example.farmInfo_be.dto.request;
 
 import com.example.farmInfo_be.enums.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class ShipmentReportRequest {
     private String name;                // 성명
     private LocalDate birthDate;        // 생년월일

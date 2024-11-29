@@ -24,6 +24,8 @@ public class MemberAnalyticsController {
     public ResponseEntity<MemberAnalyticsResponse> getAnalytics(
             @Parameter(description = "회원 전화번호", required = true) @RequestParam String phoneNumber
     ) {
+        System.out.println("MemberAnalyticsController.getAnalytics");
+        System.out.println("phoneNumber = " + phoneNumber);
         return ResponseEntity.ok(analyticsService.getAnalytics(phoneNumber));
     }
 
@@ -32,6 +34,8 @@ public class MemberAnalyticsController {
     public ResponseEntity<MemberAnalyticsResponse> getAnalyticsPrevYear(
             @Parameter(description = "회원 전화번호", required = true) @RequestParam String phoneNumber
     ) {
+        System.out.println("MemberAnalyticsController.getAnalyticsPrevYear");
+        System.out.println("phoneNumber = " + phoneNumber);
         return ResponseEntity.ok(analyticsService.getAnalyticsPrevYear(phoneNumber));
     }
 }

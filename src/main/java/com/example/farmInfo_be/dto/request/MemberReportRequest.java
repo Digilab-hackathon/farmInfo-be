@@ -1,7 +1,16 @@
 package com.example.farmInfo_be.dto.request;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.LocalDate;
 
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class MemberReportRequest {
     private String name;                // 성명
     private LocalDate birthDate;        // 생년월일

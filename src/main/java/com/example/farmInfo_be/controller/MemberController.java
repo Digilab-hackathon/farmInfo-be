@@ -24,6 +24,8 @@ public class MemberController {
     public ResponseEntity<MemberResponseDto> getReports(
             @Parameter(description = "회원 전화번호", required = true) @RequestParam String phoneNumber
     ) {
+        System.out.println("MemberController.getReports");
+        System.out.println("phoneNumber = " + phoneNumber);
         return ResponseEntity.ok(memberService.getReports(phoneNumber));
     }
 

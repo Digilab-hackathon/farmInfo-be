@@ -25,6 +25,8 @@ public class ShipmentReportController {
     public ResponseEntity<ShipmentResponseDto> create(
             @RequestBody @Parameter(description = "출하량 신고 정보") ShipmentReportRequest request
     ) {
+        System.out.println("ShipmentReportController.create");
+        System.out.println("request = " + request);
         return ResponseEntity.ok(reportService.create(request));
     }
 
@@ -33,6 +35,8 @@ public class ShipmentReportController {
     public ResponseEntity<Void> delete(
             @Parameter(description = "신고 ID", required = true) @PathVariable Long id
     ) {
+        System.out.println("ShipmentReportController.delete");
+        System.out.println("id = " + id);
         reportService.delete(id);
         return ResponseEntity.ok().build();
     }
@@ -40,6 +44,7 @@ public class ShipmentReportController {
     @Operation(summary = "출하량 신고 전체 조회", description = "모든 출하량 신고를 조회합니다.")
     @GetMapping
     public ResponseEntity<List<ShipmentResponseDto>> getAll() {
+        System.out.println("ShipmentReportController.getAll");
         return ResponseEntity.ok(reportService.getAll());
     }
 
@@ -48,6 +53,8 @@ public class ShipmentReportController {
     public ResponseEntity<List<ShipmentResponseDto>> getByStatus(
             @Parameter(description = "신고 상태(PENDING/APPROVED/REJECTED)", required = true) @PathVariable String status
     ) {
+        System.out.println("ShipmentReportController.getByStatus");
+        System.out.println("status = " + status);
         return ResponseEntity.ok(reportService.getByStatus(Status.valueOf(status)));
     }
 
@@ -56,6 +63,8 @@ public class ShipmentReportController {
     public ResponseEntity<Void> approve(
             @Parameter(description = "신고 ID", required = true) @PathVariable Long id
     ) {
+        System.out.println("ShipmentReportController.approve");
+        System.out.println("id = " + id);
         reportService.approve(id);
         return ResponseEntity.ok().build();
     }
@@ -65,6 +74,8 @@ public class ShipmentReportController {
     public ResponseEntity<Void> reject(
             @Parameter(description = "신고 ID", required = true) @PathVariable Long id
     ) {
+        System.out.println("ShipmentReportController.reject");
+        System.out.println("id = " + id);
         reportService.reject(id);
         return ResponseEntity.ok().build();
     }

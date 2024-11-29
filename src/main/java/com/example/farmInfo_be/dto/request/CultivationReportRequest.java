@@ -3,13 +3,17 @@ package com.example.farmInfo_be.dto.request;
 import com.example.farmInfo_be.enums.Crop;
 import com.example.farmInfo_be.enums.LandCategory;
 import com.example.farmInfo_be.enums.OwnershipType;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CultivationReportRequest {
     private String name;                // 성명
     private LocalDate birthDate;        // 생년월일

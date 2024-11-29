@@ -21,6 +21,7 @@ public class CultivationAreaController {
     public ResponseEntity<Void> updateOptimalCultivationArea(
            @RequestBody OptimalCultivationAreaRequest optimalCultivationAreaRequest
     ) {
+        System.out.println(optimalCultivationAreaRequest.toString());
         cultivationAreaService.changeCultivationArea(optimalCultivationAreaRequest.getCrop(), optimalCultivationAreaRequest.getValue());
         return ResponseEntity.ok().build();
     }
@@ -30,6 +31,7 @@ public class CultivationAreaController {
     public ResponseEntity<Integer> geteOptimalCultivationArea(
             @RequestParam String crop
     ) {
+        System.out.println(crop);
         return ResponseEntity.ok(cultivationAreaService.get(Crop.valueOf(crop)));
     }
 }

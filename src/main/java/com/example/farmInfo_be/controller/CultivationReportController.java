@@ -26,6 +26,8 @@ public class CultivationReportController {
     public ResponseEntity<CultivationResponseDto> create(
             @RequestBody @Parameter(description = "재배면적 신고 정보") CultivationReportRequest request
     ) {
+        System.out.println("CultivationReportController.create");
+        System.out.println(request.toString());
         return ResponseEntity.ok(reportService.create(request));
     }
 
@@ -34,6 +36,8 @@ public class CultivationReportController {
     public ResponseEntity<Void> delete(
             @Parameter(description = "신고 ID", required = true) @PathVariable Long id
     ) {
+        System.out.println("CultivationReportController.delete");
+        System.out.println(id);
         reportService.delete(id);
         return ResponseEntity.ok().build();
     }
@@ -41,6 +45,7 @@ public class CultivationReportController {
     @Operation(summary = "재배면적 신고 전체 조회", description = "모든 재배면적 신고를 조회합니다.")
     @GetMapping
     public ResponseEntity<List<CultivationResponseDto>> getAll() {
+        System.out.println("CultivationReportController.getAll");
         return ResponseEntity.ok(reportService.getAll());
     }
 
@@ -49,6 +54,8 @@ public class CultivationReportController {
     public ResponseEntity<List<CultivationResponseDto>> getByCrop(
             @Parameter(description = "작물 이름", required = true) @PathVariable String cropName
     ) {
+        System.out.println("CultivationReportController.getByCrop");
+        System.out.println(cropName);
         return ResponseEntity.ok(reportService.getByCrop(Crop.valueOf(cropName)));
     }
 
@@ -57,12 +64,16 @@ public class CultivationReportController {
     public ResponseEntity<List<CultivationResponseDto>> getByStatus(
             @Parameter(description = "신고 상태(PENDING/APPROVED/REJECTED)", required = true) @PathVariable String status
     ) {
+        System.out.println("CultivationReportController.getByStatus");
+        System.out.println(status);
         return ResponseEntity.ok(reportService.getByStatus(Status.valueOf(status)));
     }
 
     @Operation(summary = "작물별 재배면적 승인된 면적", description = "특정 작물의 재배면적 신고 중 승인된 신고들의 면적 총합")
     @GetMapping("/area/{cropName}")
     public ResponseEntity<Double> getApprovedAreaByCrop(@PathVariable String cropName){
+        System.out.println("CultivationReportController.getApprovedAreaByCrop");
+        System.out.println(cropName);
         return ResponseEntity.ok(reportService.getApprovedAreaByCrop(Crop.valueOf(cropName)));
     }
 
@@ -71,6 +82,8 @@ public class CultivationReportController {
     public ResponseEntity<Void> approve(
             @Parameter(description = "신고 ID", required = true) @PathVariable Long id
     ) {
+        System.out.println("CultivationReportController.approve");
+        System.out.println("id = " + id);
         reportService.approve(id);
         return ResponseEntity.ok().build();
     }
@@ -80,6 +93,8 @@ public class CultivationReportController {
     public ResponseEntity<Void> reject(
             @Parameter(description = "신고 ID", required = true) @PathVariable Long id
     ) {
+        System.out.println("CultivationReportController.reject");
+        System.out.println("id = " + id);
         reportService.reject(id);
         return ResponseEntity.ok().build();
     }
