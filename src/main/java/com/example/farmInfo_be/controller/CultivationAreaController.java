@@ -17,7 +17,7 @@ public class CultivationAreaController {
 
     private final CultivationAreaService cultivationAreaService;
 
-    @Operation(summary = "적정 재배 면적 수정", description = "적정 재배 면적 수정")
+    @Operation(summary = "적정  재배 면적 수정", description = "적정 재배 면적 수정")
     @PatchMapping
     public ResponseEntity<Void> updateOptimalCultivationArea(
            @RequestBody OptimalCultivationAreaRequest optimalCultivationAreaRequest
