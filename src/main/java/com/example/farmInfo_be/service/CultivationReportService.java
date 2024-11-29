@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +58,7 @@ public class CultivationReportService {
 
     public List<CultivationResponseDto> getAll() {
         return reportRepository.findAll().stream()
+                .sorted(Comparator.comparing(CultivationReport::getCreatedAt).reversed()) // 내림차순 정렬
                 .map(CultivationResponseDto::from)
                 .collect(Collectors.toList());
     }

@@ -1,5 +1,6 @@
 package com.example.farmInfo_be.service;
 
+import com.example.farmInfo_be.domain.CultivationReport;
 import com.example.farmInfo_be.domain.Member;
 import com.example.farmInfo_be.domain.ShipmentReport;
 import com.example.farmInfo_be.dto.request.ShipmentReportRequest;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,6 +62,7 @@ public class ShipmentReportService {
 
     public List<ShipmentResponseDto> getAll() {
         return reportRepository.findAll().stream()
+                .sorted(Comparator.comparing(ShipmentReport::getCreatedAt).reversed())
                 .map(ShipmentResponseDto::from)
                 .collect(Collectors.toList());
     }
