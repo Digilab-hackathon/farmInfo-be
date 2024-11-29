@@ -14,7 +14,9 @@ public enum Crop {                    // 작물 종류
     KOHLRABI("콜라비"),
     WINTER_CABBAGE("월동배추"),
     RED_CABBAGE("적채"),
-    CHERRY_TOMATO("방울토마토");
+    BRUSSELS_SPROUTS("방울다다기양배추"),
+    BEET("비트");
+
 
     private final String description;
 

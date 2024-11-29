@@ -17,13 +17,13 @@ INSERT INTO cultivation_report (
     land_category, total_area, cultivated_area, ownership_type, created_at
 )
 SELECT
-    (ABS(RAND()) % 10) + 1, -- 1부터 10까지의 member_id 랜덤 선택
+    (ABS(RAND()) % 10) + 1,
     CASE MOD(ROWNUM, 3)
         WHEN 0 THEN 'PENDING'
         WHEN 1 THEN 'APPROVED'
         ELSE 'REJECTED'
         END,
-    CASE MOD(ROWNUM, 11)
+    CASE MOD(ROWNUM, 12)
         WHEN 0 THEN 'CABBAGE'
         WHEN 1 THEN 'RADISH'
         WHEN 2 THEN 'CARROT'
@@ -34,7 +34,8 @@ SELECT
         WHEN 7 THEN 'KOHLRABI'
         WHEN 8 THEN 'WINTER_CABBAGE'
         WHEN 9 THEN 'RED_CABBAGE'
-        ELSE 'CHERRY_TOMATO'
+        WHEN 10 THEN 'BRUSSELS_SPROUTS'
+        ELSE 'BEET'
         END,
     CASE MOD(ROWNUM, 2)
         WHEN 0 THEN '제주시'
@@ -71,7 +72,7 @@ WITH member_data AS (
     SELECT id, name FROM member
 )
 SELECT
-    (ABS(RAND()) % 10) + 1, -- 1부터 10까지의 member_id 랜덤 선택
+    (ABS(RAND()) % 10) + 1,
     CASE MOD(ROWNUM, 3)
         WHEN 0 THEN 'PENDING'
         WHEN 1 THEN 'APPROVED'
@@ -98,7 +99,7 @@ SELECT
         WHEN 1 THEN 'OUTDOOR'
         ELSE 'VINYL_HOUSE'
         END,
-    CASE MOD(ROWNUM, 11)
+    CASE MOD(ROWNUM, 12)
         WHEN 0 THEN 'CABBAGE'
         WHEN 1 THEN 'RADISH'
         WHEN 2 THEN 'CARROT'
@@ -109,7 +110,8 @@ SELECT
         WHEN 7 THEN 'KOHLRABI'
         WHEN 8 THEN 'WINTER_CABBAGE'
         WHEN 9 THEN 'RED_CABBAGE'
-        ELSE 'CHERRY_TOMATO'
+        WHEN 10 THEN 'BRUSSELS_SPROUTS'
+        ELSE 'BEET'
         END,
     CASE MOD(ROWNUM, 2)
         WHEN 0 THEN 'PACKAGED'
