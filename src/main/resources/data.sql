@@ -1,38 +1,23 @@
--- Member 초기 데이터
+-- Member 초기 데이터 (10명)
 INSERT INTO member (name, birth_date, address, phone_number, home_phone_number) VALUES
                                                                                     ('김철수', '1980-01-15', '제주시 조천읍 와흘리 123', '010-1234-5678', '064-756-1234'),
                                                                                     ('이영희', '1975-03-22', '제주시 구좌읍 세화리 456', '010-2345-6789', '064-756-2345'),
-                                                                                    ('강농부3', '1982-05-15', '제주시 조천읍 369번지', '010-3456-7890', '064-756-3456'),
-                                                                                    ('박농부4', '1978-08-20', '제주시 구좌읍 492번지', '010-4567-8901', '064-756-4567');
+                                                                                    ('박농부', '1982-05-15', '제주시 조천읍 369번지', '010-3456-7890', '064-756-3456'),
+                                                                                    ('강농부', '1978-08-20', '제주시 구좌읍 492번지', '010-4567-8901', '064-756-4567'),
+                                                                                    ('정농부', '1985-06-10', '서귀포시 성산읍 789번지', '010-5678-9012', '064-756-5678'),
+                                                                                    ('조농부', '1972-11-25', '서귀포시 표선면 159번지', '010-6789-0123', '064-756-6789'),
+                                                                                    ('한농부', '1988-03-30', '제주시 조천읍 852번지', '010-7890-1234', '064-756-7890'),
+                                                                                    ('신농부', '1970-09-05', '제주시 구좌읍 753번지', '010-8901-2345', '064-756-8901'),
+                                                                                    ('임농부', '1983-12-20', '서귀포시 성산읍 951번지', '010-9012-3456', '064-756-9012'),
+                                                                                    ('최농부', '1976-04-15', '서귀포시 표선면 357번지', '010-0123-4567', '064-756-0123');
 
--- 더 많은 Member 데이터 추가 (약 20개씩 추가)
-INSERT INTO member (name, birth_date, address, phone_number, home_phone_number)
-SELECT
-    CASE MOD(ROWNUM, 5)
-        WHEN 0 THEN '강농부'
-        WHEN 1 THEN '이농부'
-        WHEN 2 THEN '박농부'
-        WHEN 3 THEN '김농부'
-        ELSE '정농부'
-        END || ROWNUM,
-    DATEADD('DAY', RAND() * 7300, DATE '1960-01-01'),
-    CASE MOD(ROWNUM, 4)
-        WHEN 0 THEN '제주시 조천읍'
-        WHEN 1 THEN '제주시 구좌읍'
-        WHEN 2 THEN '서귀포시 성산읍'
-        ELSE '서귀포시 표선면'
-        END || ' ' || (ROWNUM * 123) || '번지',
-    '010-' || LPAD(CAST(RAND() * 9999 AS INT), 4, '0') || '-' || LPAD(CAST(RAND() * 9999 AS INT), 4, '0'),
-    '064-' || LPAD(CAST(RAND() * 999999 AS INT), 6, '0')
-FROM system_range(5, 100);
-
--- CultivationReport 데이터 생성
+-- CultivationReport 데이터 생성 (100개)
 INSERT INTO cultivation_report (
     member_id, status, crop, district, village,
     land_category, total_area, cultivated_area, ownership_type, created_at
 )
 SELECT
-    id,
+    (ABS(RAND()) % 10) + 1, -- 1부터 10까지의 member_id 랜덤 선택
     CASE MOD(ROWNUM, 3)
         WHEN 0 THEN 'PENDING'
         WHEN 1 THEN 'APPROVED'
@@ -74,16 +59,19 @@ SELECT
         ELSE 'PURCHASED'
         END,
     DATEADD('SECOND', CAST(RAND() * 31536000 AS INT), CURRENT_TIMESTAMP)
-FROM member;
+FROM system_range(1, 100);
 
--- ShipmentReport 데이터 생성
+-- ShipmentReport 데이터 생성 (100개)
 INSERT INTO shipment_report (
     member_id, status, expected_ship_date, wholesale_company, trade_type,
     trading_method, producer_name, production_location, crop, packaging,
     unit, grade, created_at
 )
+WITH member_data AS (
+    SELECT id, name FROM member
+)
 SELECT
-    id,
+    (ABS(RAND()) % 10) + 1, -- 1부터 10까지의 member_id 랜덤 선택
     CASE MOD(ROWNUM, 3)
         WHEN 0 THEN 'PENDING'
         WHEN 1 THEN 'APPROVED'
@@ -104,7 +92,7 @@ SELECT
         WHEN 0 THEN 'AUCTION'
         ELSE 'FIXED_PRICE'
         END,
-    name,
+    (SELECT name FROM member_data WHERE id = ((ABS(RAND()) % 10) + 1)),
     CASE MOD(ROWNUM, 3)
         WHEN 0 THEN 'GREENHOUSE'
         WHEN 1 THEN 'OUTDOOR'
@@ -134,4 +122,4 @@ SELECT
         ELSE 'SECONDARY'
         END,
     DATEADD('SECOND', CAST(RAND() * 31536000 AS INT), CURRENT_TIMESTAMP)
-FROM member;
+FROM system_range(1, 100);
