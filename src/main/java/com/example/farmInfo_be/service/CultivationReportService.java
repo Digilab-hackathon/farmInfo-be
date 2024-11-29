@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +27,11 @@ public class CultivationReportService {
     public CultivationResponseDto create(CultivationReportRequest request) {
         Member member = memberRepository.findByNameAndBirthDateAndPhoneNumber(
                 request.getName(),
-                request.getBirthDate(),
+                convertDate(request.getBirthDate()),
                 request.getPhoneNumber()
         ).orElseGet(() -> memberRepository.save(Member.builder()
                 .name(request.getName())
-                .birthDate(request.getBirthDate())
+                .birthDate(convertDate(request.getBirthDate()))
                 .address(request.getAddress())
                 .phoneNumber(request.getPhoneNumber())
                 .homePhoneNumber(request.getHomePhoneNumber())
@@ -88,5 +90,10 @@ public class CultivationReportService {
         reportRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Report not found"))
                 .reject();
+    }
+
+    private LocalDate convertDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        return LocalDate.parse(date, formatter);
     }
 }

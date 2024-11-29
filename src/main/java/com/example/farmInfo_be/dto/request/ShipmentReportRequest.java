@@ -14,11 +14,11 @@ import java.time.LocalDate;
 @ToString
 public class ShipmentReportRequest {
     private String name;                // 성명
-    private LocalDate birthDate;        // 생년월일
+    private String birthDate;        // 생년월일
     private String address;             // 주소
     private String phoneNumber;         // 연락처
     private String homePhoneNumber;     // 연락처(자택)
-    private LocalDate expectedShipDate; // 출하 예정일
+    private String expectedShipDate; // 출하 예정일
     private WholesaleCompany wholesaleCompany;  // 출하처
     private TradeType tradeType;        // 거래 유형
     private TradingMethod tradingMethod;// 거래 방식
