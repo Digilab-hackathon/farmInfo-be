@@ -1,6 +1,8 @@
 package com.example.farmInfo_be.controller;
 
 import com.example.farmInfo_be.dto.response.MemberResponseDto;
+import com.example.farmInfo_be.service.CultivationAreaService;
+import com.example.farmInfo_be.service.MemberAnalyticsService;
 import com.example.farmInfo_be.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class MemberController {
     private final MemberService memberService;
+    private final CultivationAreaService cultivationAreaService;
+    private final MemberAnalyticsService memberAnalyticsService;
 
     @Operation(summary = "회원 신고 내역 조회", description = "회원의 전체 신고 내역(재배면적, 출하량)을 조회합니다.")
     @GetMapping("/reports")
@@ -26,7 +30,4 @@ public class MemberController {
         System.out.println("phoneNumber = " + phoneNumber);
         return ResponseEntity.ok(memberService.getReports(phoneNumber));
     }
-
-
-
 }
