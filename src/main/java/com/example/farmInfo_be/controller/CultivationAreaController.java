@@ -28,7 +28,7 @@ public class CultivationAreaController {
     }
 
     @Operation(summary = "적정 재배 면적 조회", description = "적정 재배 면적 조회")
-    @GetMapping("/{crop}")
+    @GetMapping
     public ResponseEntity<Integer> geteOptimalCultivationArea(
             @RequestParam String crop
     ) {
