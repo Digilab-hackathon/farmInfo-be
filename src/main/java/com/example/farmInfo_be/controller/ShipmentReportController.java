@@ -31,30 +31,12 @@ public class ShipmentReportController {
         return ResponseEntity.ok(reportService.create(request));
     }
 
-    @Operation(summary = "출하량 신고 삭제", description = "출하량 신고를 삭제합니다.")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(
-            @Parameter(description = "신고 ID", required = true) @PathVariable Long id
-    ) {
-        System.out.println("ShipmentReportController.delete");
-        System.out.println("id = " + id);
-        reportService.delete(id);
-        return ResponseEntity.ok().build();
-    }
-
     @Operation(summary = "특정 출하량 신고 조회", description = "특정 출하량 신고 조회")
     @GetMapping("/{id}")
     public ResponseEntity<ShipmentResponseDto> getById(@PathVariable Long id){
         System.out.println("ShipmentReportController.getById");
         System.out.println("id = " + id);
         return ResponseEntity.ok(reportService.getShipmentReportById(id));
-    }
-
-    @Operation(summary = "출하량 신고 전체 조회", description = "모든 출하량 신고를 조회합니다.")
-    @GetMapping
-    public ResponseEntity<List<ShipmentResponseDto>> getAll() {
-        System.out.println("ShipmentReportController.getAll");
-        return ResponseEntity.ok(reportService.getAll());
     }
 
     @Operation(summary = "상태별 출하량 신고 조회", description = "특정 상태의 출하량 신고를 조회합니다.")

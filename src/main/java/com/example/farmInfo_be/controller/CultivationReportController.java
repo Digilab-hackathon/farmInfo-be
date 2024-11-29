@@ -32,17 +32,6 @@ public class CultivationReportController {
         return ResponseEntity.ok(reportService.create(request));
     }
 
-    @Operation(summary = "재배면적 신고 삭제", description = "재배면적 신고를 삭제합니다.")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(
-            @Parameter(description = "신고 ID", required = true) @PathVariable Long id
-    ) {
-        System.out.println("CultivationReportController.delete");
-        System.out.println(id);
-        reportService.delete(id);
-        return ResponseEntity.ok().build();
-    }
-
     @Operation(summary = "특정 재배면적 신고 조회", description = "특정 재배면적 신고 조회")
     @GetMapping("/{id}")
     public ResponseEntity<CultivationResponseDto> getById(@PathVariable Long id){
@@ -51,22 +40,15 @@ public class CultivationReportController {
         return ResponseEntity.ok(reportService.getCultivationResponseById(id));
     }
 
-    @Operation(summary = "재배면적 신고 전체 조회", description = "모든 재배면적 신고를 조회합니다.")
-    @GetMapping
-    public ResponseEntity<List<CultivationResponseDto>> getAll() {
-        System.out.println("CultivationReportController.getAll");
-        return ResponseEntity.ok(reportService.getAll());
-    }
-
-    @Operation(summary = "작물별 재배면적 신고 조회", description = "특정 작물의 재배면적 신고를 조회합니다.")
-    @GetMapping("/by-crop/{cropName}")
-    public ResponseEntity<List<CultivationResponseDto>> getByCrop(
-            @Parameter(description = "작물 이름", required = true) @PathVariable String cropName
-    ) {
-        System.out.println("CultivationReportController.getByCrop");
-        System.out.println(cropName);
-        return ResponseEntity.ok(reportService.getByCrop(Crop.valueOf(cropName)));
-    }
+//    @Operation(summary = "작물별 재배면적 신고 조회", description = "특정 작물의 재배면적 신고를 조회합니다.")
+//    @GetMapping("/by-crop/{cropName}")
+//    public ResponseEntity<List<CultivationResponseDto>> getByCrop(
+//            @Parameter(description = "작물 이름", required = true) @PathVariable String cropName
+//    ) {
+//        System.out.println("CultivationReportController.getByCrop");
+//        System.out.println(cropName);
+//        return ResponseEntity.ok(reportService.getByCrop(Crop.valueOf(cropName)));
+//    }
 
     @Operation(summary = "상태별 재배면적 신고 조회", description = "특정 상태의 재배면적 신고를 조회합니다.")
     @GetMapping("/status/{status}")
