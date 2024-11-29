@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/price")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ExpectedPriceController {
     private final ExpectedPriceService priceService;
 
