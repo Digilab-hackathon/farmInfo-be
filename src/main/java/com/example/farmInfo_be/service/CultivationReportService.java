@@ -96,4 +96,8 @@ public class CultivationReportService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         return LocalDate.parse(date, formatter);
     }
+
+    public CultivationResponseDto getCultivationResponseById(Long id) {
+        return CultivationResponseDto.from(reportRepository.findById(id).orElseThrow(()->new IllegalArgumentException("ReportNotFound")));
+    }
 }

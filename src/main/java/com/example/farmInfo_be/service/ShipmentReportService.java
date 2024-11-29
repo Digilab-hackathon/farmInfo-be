@@ -8,6 +8,7 @@ import com.example.farmInfo_be.enums.Status;
 import com.example.farmInfo_be.repository.MemberRepository;
 import com.example.farmInfo_be.repository.ShipmentReportRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -84,6 +85,10 @@ public class ShipmentReportService {
     private LocalDate convertDate(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         return LocalDate.parse(date, formatter);
+    }
+
+    public ShipmentResponseDto getShipmentReportById(Long id) {
+        return ShipmentResponseDto.from(reportRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Report not found")));
     }
 }
 

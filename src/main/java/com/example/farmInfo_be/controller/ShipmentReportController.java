@@ -42,6 +42,14 @@ public class ShipmentReportController {
         return ResponseEntity.ok().build();
     }
 
+    @Operation(summary = "특정 출하량 신고 조회", description = "특정 출하량 신고 조회")
+    @GetMapping("/{id}")
+    public ResponseEntity<ShipmentResponseDto> getById(@PathVariable Long id){
+        System.out.println("ShipmentReportController.getById");
+        System.out.println("id = " + id);
+        return ResponseEntity.ok(reportService.getShipmentReportById(id));
+    }
+
     @Operation(summary = "출하량 신고 전체 조회", description = "모든 출하량 신고를 조회합니다.")
     @GetMapping
     public ResponseEntity<List<ShipmentResponseDto>> getAll() {
