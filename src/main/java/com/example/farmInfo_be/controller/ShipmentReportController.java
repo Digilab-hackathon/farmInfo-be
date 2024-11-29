@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api/shipment-reports")
 @Tag(name = "ShipmentReport", description = "출하량 신고 API")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ShipmentReportController {
     private final ShipmentReportService reportService;
 

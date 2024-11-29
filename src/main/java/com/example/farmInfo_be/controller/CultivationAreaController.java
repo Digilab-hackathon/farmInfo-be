@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/cultivation-area")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class CultivationAreaController {
 
     private final CultivationAreaService cultivationAreaService;

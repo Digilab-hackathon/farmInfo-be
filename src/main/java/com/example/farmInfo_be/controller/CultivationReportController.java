@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/api/cultivation-reports")
 @Tag(name = "CultivationReport", description = "재배면적 신고 API")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class CultivationReportController {
     private final CultivationReportService reportService;
 
