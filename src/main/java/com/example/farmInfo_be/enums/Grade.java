@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum Grade {                // 등급
-    PREMIUM("특"),
-    STANDARD("상"),
-    SECONDARY("보통");
+    PREMIUM("상"),
+    INTERMEDIATE("중"),
+    BASIC("하");
 
     private final String description;
 

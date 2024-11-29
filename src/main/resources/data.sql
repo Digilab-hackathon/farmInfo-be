@@ -35,11 +35,16 @@ SELECT
         WHEN 2 THEN '성산읍'
         ELSE '표선면'
         END,
-    CASE MOD(ROWNUM, 4)
+    CASE MOD(ROWNUM, 9)
         WHEN 0 THEN 'PADDY_FIELD'
         WHEN 1 THEN 'FIELD'
         WHEN 2 THEN 'ORCHARD'
-        ELSE 'MEADOW'
+        WHEN 3 THEN 'PASTURE'
+        WHEN 4 THEN 'MISCELLANEOUS'
+        WHEN 5 THEN 'FOREST'
+        WHEN 6 THEN 'FARM_HUT'
+        WHEN 7 THEN 'VINYL_HOUSE'
+        ELSE 'GREENHOUSE'
         END,
     75,
     50,
