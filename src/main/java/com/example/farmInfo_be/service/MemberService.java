@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    public MemberResponseDto getReports(Long memberId) {
-        return MemberResponseDto.from(memberRepository.findById(memberId)
+    public MemberResponseDto getReports(String phoneNumber) {
+        return MemberResponseDto.from(memberRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found")));
     }
 }
