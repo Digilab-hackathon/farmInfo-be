@@ -14,6 +14,8 @@ public class ExpectedPriceController {
 
     @GetMapping("/{crop}")
     public Integer getExpectedPrice(@PathVariable Crop crop) {
+        System.out.println("ExpectedPriceController.getExpectedPrice");
+        System.out.println("crop = " + crop);
         return priceService.calculate(crop);
     }
 }

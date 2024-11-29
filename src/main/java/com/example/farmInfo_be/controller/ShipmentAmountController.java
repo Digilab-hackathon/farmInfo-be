@@ -22,6 +22,9 @@ public class ShipmentAmountController {
             @PathVariable String phoneNumber,
             @PathVariable int year
     ) {
+        System.out.println("ShipmentAmountController.getTotalShipmentAmount");
+        System.out.println("phoneNumber = " + phoneNumber);
+        System.out.println("year = " + year);
         Member member = memberRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found"));
 
