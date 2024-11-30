@@ -1,8 +1,11 @@
 package com.example.farmInfo_be.controller;
 
 import com.example.farmInfo_be.dto.request.ShipmentReportRequest;
+import com.example.farmInfo_be.dto.response.MemberResponseDto;
+import com.example.farmInfo_be.dto.response.ShipmentReportWithMemberDto;
 import com.example.farmInfo_be.dto.response.ShipmentResponseDto;
 import com.example.farmInfo_be.enums.Status;
+import com.example.farmInfo_be.service.MemberService;
 import com.example.farmInfo_be.service.ShipmentReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/shipment-reports")
@@ -20,6 +24,7 @@ import java.util.List;
 @CrossOrigin("*")
 public class ShipmentReportController {
     private final ShipmentReportService reportService;
+    private final MemberService memberService;
 
     @Operation(summary = "출하량 신고 생성", description = "새로운 출하량 신고를 생성합니다.")
     @PostMapping
@@ -39,14 +44,38 @@ public class ShipmentReportController {
         return ResponseEntity.ok(reportService.getShipmentReportById(id));
     }
 
-    @Operation(summary = "상태별 출하량 신고 조회", description = "특정 상태의 출하량 신고를 조회합니다.")
+//    @Operation(summary = "상태별 출하량 신고 조회", description = "특정 상태의 출하량 신고를 조회합니다.")
+//    @GetMapping("/status/{status}")
+//    public ResponseEntity<List<ShipmentResponseDto>> getByStatus(
+//            @Parameter(description = "신고 상태(PENDING/APPROVED/REJECTED)", required = true) @PathVariable String status
+//    ) {
+//        System.out.println("ShipmentReportController.getByStatus");
+//        System.out.println("status = " + status);
+//        return ResponseEntity.ok(reportService.getByStatus(Status.valueOf(status)));
+//    }
+
+    @Operation(summary = "상태별 재배면적 신고 조회", description = "특정 상태의 재배면적 신고를 조회합니다.")
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<ShipmentResponseDto>> getByStatus(
+    public ResponseEntity<List<ShipmentReportWithMemberDto>> getByStatus(
             @Parameter(description = "신고 상태(PENDING/APPROVED/REJECTED)", required = true) @PathVariable String status
     ) {
-        System.out.println("ShipmentReportController.getByStatus");
-        System.out.println("status = " + status);
-        return ResponseEntity.ok(reportService.getByStatus(Status.valueOf(status)));
+        System.out.println("CultivationReportController.getByStatus");
+        System.out.println(status);
+
+        // 상태별 재배면적 신고 목록 조회
+        List<ShipmentResponseDto> shipmentReports = reportService.getByStatus(Status.valueOf(status));
+
+        // 각 신고에 대한 회원 정보를 조회하여 새로운 DTO 리스트 생성
+        List<ShipmentReportWithMemberDto> result = shipmentReports.stream()
+                .map(report -> {
+                    Long memberId = report.getMemberId(); // memberId 조회
+                    MemberResponseDto memberInfo = memberService.getMember(memberId);
+                    memberInfo.removeReports();
+                    return new ShipmentReportWithMemberDto(report, memberInfo);
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(result);
     }
 
     @Operation(summary = "출하량 신고 승인", description = "출하량 신고를 승인합니다. (관리자 전용)")

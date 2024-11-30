@@ -16,4 +16,8 @@ public class MemberService {
         return MemberResponseDto.from(memberRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found")));
     }
+
+    public MemberResponseDto getMember(Long memberId) {
+        return MemberResponseDto.from(memberRepository.findById(memberId).orElseThrow(()->new IllegalArgumentException("Member not found")));
+    }
 }
