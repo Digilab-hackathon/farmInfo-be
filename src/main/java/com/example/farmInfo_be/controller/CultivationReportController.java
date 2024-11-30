@@ -37,10 +37,13 @@ public class CultivationReportController {
 
     @Operation(summary = "특정 재배면적 신고 조회", description = "특정 재배면적 신고 조회")
     @GetMapping("/{id}")
-    public ResponseEntity<CultivationResponseDto> getById(@PathVariable Long id){
+    public ResponseEntity<CultivationReportWithMemberDto> getById(@PathVariable Long id){
         System.out.println("CultivationReportController.getById");
         System.out.println("id = " + id);
-        return ResponseEntity.ok(reportService.getCultivationResponseById(id));
+        CultivationResponseDto responseDto = reportService.getCultivationResponseById(id);
+        MemberReponseDtoWithoutReport memberInfo = memberService.getMember(id);
+
+        return ResponseEntity.ok(new CultivationReportWithMemberDto(responseDto, memberInfo));
     }
 
 //    @Operation(summary = "작물별 재배면적 신고 조회", description = "특정 작물의 재배면적 신고를 조회합니다.")
