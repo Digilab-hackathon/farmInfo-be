@@ -1,5 +1,6 @@
 package com.example.farmInfo_be.service;
 
+import com.example.farmInfo_be.dto.response.MemberReponseDtoWithoutReport;
 import com.example.farmInfo_be.dto.response.MemberResponseDto;
 import com.example.farmInfo_be.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class MemberService {
                 .orElseThrow(() -> new IllegalArgumentException("Member not found")));
     }
 
-    public MemberResponseDto getMember(Long memberId) {
-        return MemberResponseDto.from(memberRepository.findById(memberId).orElseThrow(()->new IllegalArgumentException("Member not found")));
+    public MemberReponseDtoWithoutReport getMember(Long memberId) {
+        return MemberReponseDtoWithoutReport.from(memberRepository.findById(memberId).orElseThrow(()->new IllegalArgumentException("Member not found")));
     }
 }

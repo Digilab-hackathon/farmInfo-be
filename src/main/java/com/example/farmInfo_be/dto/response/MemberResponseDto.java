@@ -36,10 +36,4 @@ public class MemberResponseDto {         // 회원 정보 응답
                         .collect(Collectors.toList())
         );
     }
-
-    public void removeReports(){
-        this.cultivationReports=null;
-        this.shipmentReports=null;
-    }
-
 }

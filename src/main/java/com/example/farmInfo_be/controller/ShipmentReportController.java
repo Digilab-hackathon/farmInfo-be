@@ -1,6 +1,7 @@
 package com.example.farmInfo_be.controller;
 
 import com.example.farmInfo_be.dto.request.ShipmentReportRequest;
+import com.example.farmInfo_be.dto.response.MemberReponseDtoWithoutReport;
 import com.example.farmInfo_be.dto.response.MemberResponseDto;
 import com.example.farmInfo_be.dto.response.ShipmentReportWithMemberDto;
 import com.example.farmInfo_be.dto.response.ShipmentResponseDto;
@@ -69,8 +70,7 @@ public class ShipmentReportController {
         List<ShipmentReportWithMemberDto> result = shipmentReports.stream()
                 .map(report -> {
                     Long memberId = report.getMemberId(); // memberId 조회
-                    MemberResponseDto memberInfo = memberService.getMember(memberId);
-                    memberInfo.removeReports();
+                    MemberReponseDtoWithoutReport memberInfo = memberService.getMember(memberId);
                     return new ShipmentReportWithMemberDto(report, memberInfo);
                 })
                 .collect(Collectors.toList());

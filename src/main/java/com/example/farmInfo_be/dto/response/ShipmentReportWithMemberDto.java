@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ShipmentReportWithMemberDto {
     private ShipmentResponseDto cultivationReport;
-    private MemberResponseDto memberInfo;
+    private MemberReponseDtoWithoutReport memberInfo;
 }

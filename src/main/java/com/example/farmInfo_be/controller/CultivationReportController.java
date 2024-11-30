@@ -1,10 +1,7 @@
 package com.example.farmInfo_be.controller;
 
 import com.example.farmInfo_be.dto.request.CultivationReportRequest;
-import com.example.farmInfo_be.dto.response.CultivationReportWithMemberDto;
-import com.example.farmInfo_be.dto.response.CultivationResponseDto;
-import com.example.farmInfo_be.dto.response.MemberResponseDto;
-import com.example.farmInfo_be.dto.response.ShipmentReportWithMemberDto;
+import com.example.farmInfo_be.dto.response.*;
 import com.example.farmInfo_be.enums.Crop;
 import com.example.farmInfo_be.enums.Status;
 import com.example.farmInfo_be.service.CultivationReportService;
@@ -71,8 +68,7 @@ public class CultivationReportController {
         List<CultivationReportWithMemberDto> result = cultivationReports.stream()
                 .map(report -> {
                     Long memberId = report.getMemberId(); // memberId 조회
-                    MemberResponseDto memberInfo = memberService.getMember(memberId);
-                    memberInfo.removeReports();
+                    MemberReponseDtoWithoutReport memberInfo = memberService.getMember(memberId);
                     return new CultivationReportWithMemberDto(report, memberInfo);
                 })
                 .collect(Collectors.toList());
