@@ -41,7 +41,7 @@ public class CultivationReportController {
         System.out.println("CultivationReportController.getById");
         System.out.println("id = " + id);
         CultivationResponseDto responseDto = reportService.getCultivationResponseById(id);
-        MemberReponseDtoWithoutReport memberInfo = memberService.getMember(id);
+        MemberReponseDtoWithoutReport memberInfo = memberService.getMember(responseDto.getMemberId());
 
         return ResponseEntity.ok(new CultivationReportWithMemberDto(responseDto, memberInfo));
     }

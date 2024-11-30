@@ -121,10 +121,13 @@ END,
         WHEN 0 THEN 'PACKAGED'
         ELSE 'UNPACKAGED'
 END,
-    CASE n % 4
+    CASE n % 7
         WHEN 0 THEN 100
         WHEN 1 THEN 200
         WHEN 2 THEN 150
+        WHEN 3 THEN 127
+        WHEN 4 THEN 198
+        WHEN 5 THEN 156
         ELSE 300
 END,
     CASE n % 3
