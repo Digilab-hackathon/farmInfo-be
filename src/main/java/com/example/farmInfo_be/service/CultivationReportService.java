@@ -83,15 +83,17 @@ public class CultivationReportService {
     }
 
     public void approve(Long id) {
-        reportRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Report not found"))
-                .approve();
+        CultivationReport report = reportRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Report not found"));
+        report.approve();
+        reportRepository.save(report);
     }
 
     public void reject(Long id) {
-        reportRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Report not found"))
-                .reject();
+        CultivationReport report = reportRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Report not found"));
+        report.reject();
+        reportRepository.save(report);
     }
 
     private LocalDate convertDate(String date) {

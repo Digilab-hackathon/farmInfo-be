@@ -36,3 +36,7 @@ public class CultivationAreaController {
         return ResponseEntity.ok(cultivationAreaService.get(Crop.valueOf(crop)));
     }
 }
+/**
+ * 18 34 28 19
+ * 7 5 3 6
+ */

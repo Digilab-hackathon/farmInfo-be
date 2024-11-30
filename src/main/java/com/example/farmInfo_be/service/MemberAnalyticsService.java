@@ -18,8 +18,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Transactional
 public class MemberAnalyticsService {
     private final MemberRepository memberRepository;
 

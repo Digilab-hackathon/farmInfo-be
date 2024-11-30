@@ -23,10 +23,10 @@ public class Member {                    // 회원 정보
     private String phoneNumber;          // 연락처
     private String homePhoneNumber;      // 자택번호
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
     private List<CultivationReport> cultivationReports = new ArrayList<>();  // 재배면적 신고 목록
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER)
     private List<ShipmentReport> shipmentReports = new ArrayList<>();        // 출하량 신고 목록
 
     @Builder
@@ -38,3 +38,11 @@ public class Member {                    // 회원 정보
         this.homePhoneNumber = homePhoneNumber;
     }
 }
+
+/**
+ * 29 22 21 26
+ */
+
+/**
+ * 8 4 2 5
+ */
