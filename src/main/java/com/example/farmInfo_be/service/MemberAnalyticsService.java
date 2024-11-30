@@ -43,10 +43,10 @@ public class MemberAnalyticsService {
         Map<Crop, Double> cropAreas = new HashMap<>();
         double totalArea = 0.0;
 
-        // 승인된 재배 신고만 집계 (현재 년도)
+        // 승인된 재배 신고만 집계 (2024년)
         for (CultivationReport report : reports) {
             if (report.getStatus() == Status.APPROVED &&
-                    report.getCreatedAt().getYear() == LocalDate.now().getYear()) {
+                    report.getCreatedAt().getYear() == 2024) {
                 cropAreas.merge(report.getCrop(), report.getCultivatedArea(), Double::sum);
                 totalArea += report.getCultivatedArea();
             }
@@ -68,18 +68,18 @@ public class MemberAnalyticsService {
         Map<Crop, Double> cultivationAreas = new HashMap<>();
         Map<Crop, Double> shipmentAmounts = new HashMap<>();
 
-        // 승인된 재배 면적 집계 (현재 년도)
+        // 승인된 재배 면적 집계 (2024년)
         for (CultivationReport report : cultivationReports) {
             if (report.getStatus() == Status.APPROVED &&
-                    report.getCreatedAt().getYear() == LocalDate.now().getYear()) {
+                    report.getCreatedAt().getYear() == 2024) {
                 cultivationAreas.merge(report.getCrop(), report.getCultivatedArea(), Double::sum);
             }
         }
 
-        // 승인된 출하량 집계 (현재 년도)
+        // 승인된 출하량 집계 (2024년)
         for (ShipmentReport report : shipmentReports) {
             if (report.getStatus() == Status.APPROVED &&
-                    report.getCreatedAt().getYear() == LocalDate.now().getYear()) {
+                    report.getCreatedAt().getYear() == 2024) {
                 shipmentAmounts.merge(report.getCrop(), report.getUnit(), Double::sum);
             }
         }
@@ -113,10 +113,10 @@ public class MemberAnalyticsService {
         Map<Crop, Double> cropAreas = new HashMap<>();
         double totalArea = 0.0;
 
-        // 승인된 재배 신고만 집계 (이전 년도)
+        // 승인된 재배 신고만 집계 (2023년)
         for (CultivationReport report : reports) {
             if (report.getStatus() == Status.APPROVED &&
-                    report.getCreatedAt().getYear() == LocalDate.now().minusYears(1).getYear()) {
+                    report.getCreatedAt().getYear() == 2023) {
                 cropAreas.merge(report.getCrop(), report.getCultivatedArea(), Double::sum);
                 totalArea += report.getCultivatedArea();
             }
@@ -138,17 +138,18 @@ public class MemberAnalyticsService {
         Map<Crop, Double> cultivationAreas = new HashMap<>();
         Map<Crop, Double> shipmentAmounts = new HashMap<>();
 
+        // 승인된 재배 면적 집계 (2023년)
         for (CultivationReport report : cultivationReports) {
             if (report.getStatus() == Status.APPROVED &&
-                    report.getCreatedAt().getYear() == LocalDate.now().minusYears(1).getYear()) {
+                    report.getCreatedAt().getYear() == 2023) {
                 cultivationAreas.merge(report.getCrop(), report.getCultivatedArea(), Double::sum);
             }
         }
 
-        // 승인된 출하량 집계 (이전 년도)
+        // 승인된 출하량 집계 (2023년)
         for (ShipmentReport report : shipmentReports) {
             if (report.getStatus() == Status.APPROVED &&
-                    report.getCreatedAt().getYear() == LocalDate.now().minusYears(1).getYear()) {
+                    report.getCreatedAt().getYear() == 2023) {
                 shipmentAmounts.merge(report.getCrop(), report.getUnit(), Double::sum);
             }
         }
