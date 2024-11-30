@@ -84,6 +84,7 @@ public class CultivationReportController {
     public ResponseEntity<Double> getApprovedAreaByCrop(@PathVariable String cropName){
         System.out.println("CultivationReportController.getApprovedAreaByCrop");
         System.out.println(cropName);
+        System.out.println(reportService.getApprovedAreaByCrop(Crop.valueOf(cropName)));
         return ResponseEntity.ok(reportService.getApprovedAreaByCrop(Crop.valueOf(cropName)));
     }
 
