@@ -5,6 +5,7 @@ import com.example.farmInfo_be.domain.ShipmentReport;
 import com.example.farmInfo_be.enums.Status;
 import com.example.farmInfo_be.repository.MemberRepository;
 import com.example.farmInfo_be.repository.ShipmentReportRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ public class ShipmentAmountController {
     private final ShipmentReportRepository shipmentReportRepository;
     private final MemberRepository memberRepository;
 
+    @Operation(summary = "phone number의 회원이 특정 년도에 출하한 양",description = "phone number의 회원이 특정 년도에 출하한 양")
     @GetMapping("/total/{phoneNumber}/{year}")
     public ResponseEntity<Double> getTotalShipmentAmount(
             @PathVariable String phoneNumber,

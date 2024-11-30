@@ -97,7 +97,7 @@ END,
         WHEN 0 THEN 'AUCTION'
         ELSE 'FIXED_PRICE'
 END,
-    '김철수',
+    '농바니즈',
     CASE n % 3
         WHEN 0 THEN 'GREENHOUSE'
         WHEN 1 THEN 'OUTDOOR'
