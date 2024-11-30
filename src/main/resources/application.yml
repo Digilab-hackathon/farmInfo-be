@@ -28,7 +28,7 @@ spring:
     password: yh990523
   jpa:
     hibernate:
-      ddl-auto: create-drop  # 서버 시작시 테이블 생성, 종료시 삭제
+      ddl-auto: create  # 서버 시작시 테이블 생성, 종료시 삭제
     show-sql: true
     properties:
       hibernate:

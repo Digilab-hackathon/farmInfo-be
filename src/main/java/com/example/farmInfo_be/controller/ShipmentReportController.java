@@ -60,7 +60,7 @@ public class ShipmentReportController {
     public ResponseEntity<List<ShipmentReportWithMemberDto>> getByStatus(
             @Parameter(description = "신고 상태(PENDING/APPROVED/REJECTED)", required = true) @PathVariable String status
     ) {
-        System.out.println("CultivationReportController.getByStatus");
+        System.out.println("ShipmentReportController.getByStatus");
         System.out.println(status);
 
         // 상태별 재배면적 신고 목록 조회

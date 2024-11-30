@@ -5,7 +5,7 @@ DELETE FROM member;
 
 -- 회원 데이터 삽입
 INSERT INTO member (name, birth_date, address, phone_number, home_phone_number) VALUES
-    ('김철수', '1980-01-15', '제주시 조천읍 와흘리 123', '010-1234-5678', '064-756-1234');
+    ('농바니즈', '1980-01-15', '제주시 조천읍 와흘리 123', '010-1234-5678', '064-756-1234');
 
 -- 재배 신고 데이터 삽입
 INSERT INTO cultivation_report
@@ -13,7 +13,7 @@ INSERT INTO cultivation_report
 WITH RECURSIVE numbers AS (
     SELECT 1 AS n
     UNION ALL
-    SELECT n + 1 FROM numbers WHERE n < 36
+    SELECT n + 1 FROM numbers WHERE n < 72
 )
 SELECT
     1,
@@ -63,7 +63,7 @@ END,
         WHEN 0 THEN 'SELF_OWNED'
         ELSE 'PURCHASED'
 END,
-    DATE_ADD('2023-01-01', INTERVAL ((n-1) % 36) DAY)
+    DATE_ADD('2022-01-01', INTERVAL ((n-1) * 15) DAY)  -- 15일 간격으로 2022년부터 데이터 생성
 FROM numbers;
 
 -- 출하 신고 데이터 삽입
@@ -73,7 +73,7 @@ INSERT INTO shipment_report
 WITH RECURSIVE numbers AS (
     SELECT 1 AS n
     UNION ALL
-    SELECT n + 1 FROM numbers WHERE n < 36
+    SELECT n + 1 FROM numbers WHERE n < 72
 )
 SELECT
     1,
@@ -82,7 +82,7 @@ SELECT
         WHEN 1 THEN 'APPROVED'
         ELSE 'REJECTED'
 END,
-    DATE_ADD('2023-01-01', INTERVAL n * 7 DAY),
+    DATE_ADD('2022-01-01', INTERVAL n * 7 DAY),
     CASE n % 4
         WHEN 0 THEN 'JEJUNET'
         WHEN 1 THEN 'JEJU_NONGHYUP'
@@ -132,5 +132,5 @@ END,
         WHEN 1 THEN 'INTERMEDIATE'
         ELSE 'BASIC'
 END,
-    DATE_ADD('2023-01-01', INTERVAL ((n-1) % 36) DAY)
+    DATE_ADD('2022-01-01', INTERVAL ((n-1) * 15) DAY)  -- 15일 간격으로 2022년부터 데이터 생성
 FROM numbers;

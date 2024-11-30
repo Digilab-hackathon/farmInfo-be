@@ -95,3 +95,32 @@ public class ShipmentReportService {
     }
 }
 
+/**
+ * {
+ *     "cultivationReport": {
+ *       "id": 1,
+ *       "memberId": 1,
+ *       "status": "PENDING",
+ *       "crop": "CABBAGE",
+ *       "district": "서귀포시",
+ *       "village": "구좌읍",
+ *       "landCategory": "FIELD",
+ *       "totalArea": 94.2,
+ *       "cultivatedArea": 29.76,
+ *       "ownershipType": "PURCHASED",
+ *       "createdAt": "2021-12-31T15:00:00"
+ *     },
+ *     "memberInfo": {
+ *       "id": 1,
+ *       "name": "농바니즈",
+ *       "birthDate": "1980-01-15",
+ *       "address": "제주시 조천읍 와흘리 123",
+ *       "phoneNumber": "010-1234-5678",
+ *       "homePhoneNumber": "064-756-1234"
+ *     }
+ *   },
+ */
+
+/**
+ *
+ */
