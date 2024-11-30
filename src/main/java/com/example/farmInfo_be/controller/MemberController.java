@@ -28,6 +28,7 @@ public class MemberController {
     ) {
         System.out.println("MemberController.getReports");
         System.out.println("phoneNumber = " + phoneNumber);
+        System.out.println(memberService.getReports(phoneNumber));
         return ResponseEntity.ok(memberService.getReports(phoneNumber));
     }
 }

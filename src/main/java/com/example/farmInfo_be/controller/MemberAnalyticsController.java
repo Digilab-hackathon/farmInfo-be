@@ -24,6 +24,7 @@ public class MemberAnalyticsController {
     ) {
         System.out.println("MemberAnalyticsController.getAnalytics");
         System.out.println("phoneNumber = " + phoneNumber);
+        System.out.println(analyticsService.getAnalytics(phoneNumber));
         return ResponseEntity.ok(analyticsService.getAnalytics(phoneNumber));
     }
 
@@ -34,6 +35,7 @@ public class MemberAnalyticsController {
     ) {
         System.out.println("MemberAnalyticsController.getAnalyticsPrevYear");
         System.out.println("phoneNumber = " + phoneNumber);
+        System.out.println(analyticsService.getAnalyticsPrevYear(phoneNumber));
         return ResponseEntity.ok(analyticsService.getAnalyticsPrevYear(phoneNumber));
     }
 }
