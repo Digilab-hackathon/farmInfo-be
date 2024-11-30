@@ -11,7 +11,7 @@ public class OptimalCultivationArea {
     public static Map<Crop, Integer> OPTIMAL_CULTIVATION_AREA = Arrays.stream(Crop.values())
             .collect(Collectors.toMap(
                     crop -> crop,
-                    crop -> 100
+                    crop -> 10000
             ));
 
 }
