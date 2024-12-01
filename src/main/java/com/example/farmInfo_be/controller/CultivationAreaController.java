@@ -33,6 +33,7 @@ public class CultivationAreaController {
             @RequestParam String crop
     ) {
         System.out.println(crop);
+        System.out.println(cultivationAreaService.get(Crop.valueOf(crop)));
         return ResponseEntity.ok(cultivationAreaService.get(Crop.valueOf(crop)));
     }
 }
