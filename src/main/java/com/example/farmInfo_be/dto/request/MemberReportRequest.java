@@ -17,4 +17,5 @@ public class MemberReportRequest {
     private String address;             // 주소
     private String phoneNumber;         // 연락처
     private String homePhoneNumber;
+
 }
