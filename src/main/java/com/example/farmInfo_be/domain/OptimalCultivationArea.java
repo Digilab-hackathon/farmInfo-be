@@ -12,7 +12,7 @@ public class OptimalCultivationArea {
         Map<Crop, Integer> map = new HashMap<>();
 
         // 무만 5000으로 설정
-        map.put(Crop.RADISH, 5000);
+        map.put(Crop.RADISH, 700);
 
         // 나머지는 모두 1000으로 설정
         for (Crop crop : Crop.values()) {
