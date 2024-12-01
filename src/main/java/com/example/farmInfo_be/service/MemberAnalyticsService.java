@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 public class MemberAnalyticsService {
     private final MemberRepository memberRepository;
 
+    @Transactional
     public MemberAnalyticsResponse getAnalytics(String phoneNumber) {
         Member member = memberRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found"));
